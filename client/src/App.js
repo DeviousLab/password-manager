@@ -6,8 +6,8 @@ function App() {
   const [password, setPassword] = useState('');
   const [title, setTitle] = useState('');
 
-  const addPassword = async () => {
-    Axios.post('http://localhost:5000/addpasswords', {
+  const addPassword = () => {
+    Axios.post('http://localhost:8000/addpasswords', {
       password,
       title
     });
