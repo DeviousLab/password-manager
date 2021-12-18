@@ -13,7 +13,7 @@ function App() {
         setPasswordsArray(res.data);
       })
       .catch(err => console.log(err));
-  });
+  }, []);
 
   const addPassword = () => {
     Axios.post('http://localhost:8000/addpasswords', {
@@ -29,7 +29,7 @@ function App() {
     })
       .then(res => {
         setPasswordsArray(passwordsArray.map(index => {
-          return index.id == encryption.id ? {
+          return index.id === encryption.id ? {
             id: index.id,
             password: index.password,
             title: res.data,
