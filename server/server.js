@@ -24,6 +24,14 @@ app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
+app.get('/getpasswords', (req, res) => {
+  db.query('SELECT * FROM passwords', 
+  (err, rows) => {
+    if (err) throw err;
+    res.send(rows);
+  });
+})
+
 app.post('/addpasswords', (req, res) => {
   const { password, title } = req.body;
   const encryptedPassword = encrypt(password);
