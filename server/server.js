@@ -35,7 +35,7 @@ app.get('/getpasswords', (req, res) => {
 app.post('/addpasswords', (req, res) => {
   const { password, title } = req.body;
   const encryptedPassword = encrypt(password);
-  db.query("INSERT INTO passwords (pw_passwords, pw_title, pw_iv) VALUES (?, ?, ?)", 
+  db.query("INSERT INTO passwords (password, title, iv) VALUES (?, ?, ?)", 
   [encryptedPassword.password, title, encryptedPassword.iv],
   (err, results) => {
     if (err) throw err;

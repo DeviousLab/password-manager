@@ -24,11 +24,18 @@ function App() {
 
   const showPassword = (encryption) => {
     Axios.post('http://localhost:8000/decryptpasswords', {
-      password: encryption.pw_passwords,
-      iv: encryption.pw_iv
+      password: encryption.password,
+      iv: encryption.iv
     })
       .then(res => {
-        console.log(res.data);
+        setPasswordsArray(passwordsArray.map(index => {
+          return index.id == encryption.id ? {
+            id: index.id,
+            password: index.password,
+            title: res.data,
+            iv: index.iv
+          } : index
+        }))
       })
       .catch(err => console.log(err));
   }
@@ -36,15 +43,15 @@ function App() {
   return (
     <div className="App">
       <div className="add-password">
-        <input type="text" placeholder="Password" onChange={(e) => {setPassword(e.target.value)}}/>
-        <input type="text" placeholder="Google" onChange={(e) => {setTitle(e.target.value)}}/>
+        <input type="text" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }} />
+        <input type="text" placeholder="Google" onChange={(e) => { setTitle(e.target.value) }} />
         <button onClick={addPassword}>Add</button>
       </div>
       <div className="passwords-array">
         {passwordsArray.map((index, key) => {
           return (
-            <div className="password-element" onClick={() => {showPassword({ password: index.password, iv: index.iv })}} key={key}>
-              <p>{index.pw_title}</p>
+            <div className="password-element" onClick={() => { showPassword({ password: index.password, iv: index.iv, id: index.id }) }} key={key}>
+              <p>{index.title}</p>
             </div>
           )
         })}
