@@ -44,9 +44,10 @@ function App() {
     <div className="App">
       <div className="add-password">
         <input type="text" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }} />
-        <input type="text" placeholder="Google" onChange={(e) => { setTitle(e.target.value) }} />
+        <input type="text" placeholder="Website" onChange={(e) => { setTitle(e.target.value) }} />
         <button onClick={addPassword}>Add</button>
       </div>
+      <h3>Passwords List</h3>
       <div className="passwords-array">
         {passwordsArray.map((index, key) => {
           return (
