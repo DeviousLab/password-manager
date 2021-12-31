@@ -16,12 +16,17 @@ This is an app that can be used to store the passwords for websites you frequent
 - Other small relevant libraries
 
 ## How it works
+![image](https://user-images.githubusercontent.com/53790060/147832717-a875b0f5-d88b-48a0-8572-bcbfbf4b7040.png)
 
 First the user is greeted with a page with an entry field for the password and the website the password is linked to. Here the user can enter their password and website to be stored in the passwords list below. Using the Node.js Crypto library with the `crypto.createCipheriv(algorithm, key, iv[, options])` function returns a Cipher object, with the given algorithm, key and initialization vector. The password is hashed using the 'aes-256-ctr' encryption algorithm before being stored in the MySQL database. The details for the DB are stored within a .env file to ensure that access to the database is more secure. 
 
 The frontend and backend is linked using Axios, where Axios allows the password/website details entered on the page to be posted to the database. The MySQL database has four rows, the id, the password hash, the title and the initialization vector. All the rows are assigned to be NN to avoid any security issues. 
 
+![image](https://user-images.githubusercontent.com/53790060/147832809-fc4b7a8d-1528-43f4-ad20-28f1035bda85.png)
+
 When the user forgets the password they used, they can simply navigate back to the page and click on the button that has the relevant website to reveal the hidden password.
+
+![image](https://user-images.githubusercontent.com/53790060/147832774-6bb91c1c-bb32-4c78-bd18-332f2f8897ad.png)
 
 ## Improvements
 - Create a login/register page before accessing the application.
